@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+    --swiper-theme-color: #4b4d53;
+    --swiper-navigation-size: 30px;
+    --swiper-navigation-sides-offset: 40px;
+    --swiper-pagination-bottom: 20px;
+    --swiper-pagination-color: #afb3c0;
+    --swiper-pagination-bullet-inactive-color: #36373c;
+    --swiper-pagination-bullet-inactive-opacity: 1;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+.container {
+    margin: auto;
+    max-width: 840px;
+}
+
+.container-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-line {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    padding: 1.7rem 0;
+}
+
+.logo-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.logo img {
+    width: 70%;
+    height: auto;
+    z-index: 3;
+    position: relative;
+}
+
+.logo-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff4d00, #ffe600, #ff4d00);
+    background-size: 200% 200%;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(4px);
+    pointer-events: none;
+}
+
+.logo-wrapper:hover::before {
+    animation: fireGlow 2s linear infinite;
+    opacity: 1;
+    filter: blur(6px);
+}
+
+.logo-wrapper:hover {
+    box-shadow: 0 0 12px rgba(255, 102, 0, 0.7), 0 0 24px rgba(255, 204, 0, 0.5);
+}
+
+.main-menu {
+    display: flex;
+    margin-top: 15px;
+    font-size: 19px;
+    margin-right: -16px;
+}
+
+.main-menu li {
+    list-style: none;
+}
+
+.main-menu a {
+    color: #bbbec9;
+    padding: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+    font-weight: 200;
+    outline: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-menu a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #d4af37, #a7a9ac);
+    transition: transform 0.4s ease;
+    border-radius: 1px;
+}
+
+.main-menu a:hover {
+    color: #d4af37;
+}
+
+.main-menu a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.slider {
+    height: 100vh;
+    box-shadow: inset 0 50px 50px #000, inset 0 -50px 50px #000;
+}
+
+.slider .slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide__content {
+    text-align: center;
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+.swiper-slide-active .slide__content {
+    opacity: 1;
+}
+
+.slide__content h2 {
+    font-size: calc(var(--index) * 4);
+    text-transform: uppercase;
+    letter-spacing: calc(var(--index) * 1);
+    margin-bottom: calc(var(--index) * 2.3);
+    position: relative;
+}
+
+.slide__content h2::after {
+    content: "";
+    height: 1px;
+    width: 20%;
+    background-color: rgba(255 255 255 / .35);
+    position: absolute;
+    left: 40%;
+    bottom: calc(var(--index) * -1);
+}
+
+.slide__content p {
+    font-size: calc(var(--index) * .9);
+    letter-spacing: calc(var(--index) * .2);
+    text-transform: uppercase;
+    color: rgba(255 255 255 / .8);
+    margin-bottom: calc(var(--index) * 2.6);
+}
+
+button {
+    --button-color: rgba(255 255 255 / .9);
+    padding: 10px 40px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    border-radius: 10em;
+    color: var(--button-color);
+    background-color: transparent;
+    border: 2px solid var(--button-color);
+}
+
+.slider-navigation>* {
+    border: 1px solid var(--swiper-theme-color);
+    border-radius: 10em;
+    width: 55px;
+    height: 55px;
+}
+
+.video-background {
+    position: fixed;
+    width: 95%;
+    height: 95%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: .7;
+    transition: opacity 2s ease-out;
+}
+
+.video-background.change {
+    opacity: 1;
+}
+
+@keyframes fireGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
